@@ -49,7 +49,7 @@ export const handleChangePageAction = page => {
 const getListAction = data => {
   return {
     type: CHANGE_LIST,
-    data: fromJS(data), // 注意把它变为immutable对象
+    data: fromJS(data), // 注意要把它变为immutable对象
     totalPage: Math.ceil(data.length / 10)
   }
 }

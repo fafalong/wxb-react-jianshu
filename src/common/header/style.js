@@ -44,7 +44,7 @@ export const NavLeft = styled.div`
   align-items: center;
   height: 56px;
 `
-export const NavItemLeft = styled.div`
+export const NavItemLeft = styled.a`
   padding: 0 20px;
   color: #333;
   font-size: 18px;

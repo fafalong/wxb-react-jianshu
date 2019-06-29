@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
+
 // 导入action生成器
 import {
   handleInputFocusAction,
@@ -68,8 +69,12 @@ const Header = props => {
         </Link>
         <Nav>
           <NavLeft>
-            <NavItemLeft className='active'>首页</NavItemLeft>
-            <NavItemLeft>下载App</NavItemLeft>
+            <Link to='/'>
+              <NavItemLeft className='active'>首页</NavItemLeft>
+            </Link>
+            <NavItemLeft href='https://www.jianshu.com/apps'>
+              下载App
+            </NavItemLeft>
             <SearchWrapper>
               <CSSTransition in={focused} timeout={400} classNames='slide'>
                 <NavSearch
@@ -140,7 +145,7 @@ const Header = props => {
 // 把store的数据state映射到组件中的props，负责取值
 const mapStateToProps = state => {
   return {
-    // immutable对象的get方法，此时的state是一个immutable对象
+    // immutable对象的getIn方法，此时的state是一个immutable对象
     focused: state.getIn(['header', 'focused']),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
@@ -150,7 +155,7 @@ const mapStateToProps = state => {
   }
 }
 
-// 把store.dispatch映射到props上，负责更改值
+// 把dispatch方法映射到props上，负责更改值
 const mapDispatchToProps = dispatch => {
   return {
     handleInputFocus(list) {
