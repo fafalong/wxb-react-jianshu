@@ -1,13 +1,22 @@
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
 
-export const HeaderWrapper = styled.div`
-  position: relative;
+/* 容器 */
+export const HeaderWrapper = styled.nav`
   height: 56px;
   border-bottom: 1px solid #f0f0f0;
 `
 
-export const Logo = styled.a.attrs({ href: '/' })`
+/* 内容 */
+export const HeaderContent = styled.div`
+  position: relative;
+  width: 1440px;
+  height: 56px;
+  margin: 0 auto;
+`
+
+/* Logo */
+export const Logo = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -18,28 +27,66 @@ export const Logo = styled.a.attrs({ href: '/' })`
   background-size: contain;
 `
 
+/* 菜单栏 */
 export const Nav = styled.div`
-  width: 960px;
-  height: 100%;
-  padding-right: 70px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 960px;
+  height: 56px;
   margin: 0 auto;
 `
 
-export const NavItem = styled.div`
-  line-height: 56px;
-  padding: 0 15px;
-  font-size: 17px;
+/* 左栏 */
+export const NavLeft = styled.div`
+  display: flex;
+  align-items: center;
+  height: 56px;
+`
+export const NavItemLeft = styled.div`
+  padding: 0 20px;
   color: #333;
-  &.left {
-    float: left;
-  }
-  &.right {
-    float: right;
-    color: #969696;
-  }
+  font-size: 18px;
   &.active {
     color: #ea6f5a;
+  }
+`
+
+/* 右栏 */
+export const NavRight = styled.div`
+  display: flex;
+  align-items: center;
+  height: 56px;
+`
+export const NavItemRight = styled.div`
+  padding: 0 10px;
+  color: #aaa;
+  font-size: 16px;
+  font-weight: bold;
+`
+
+/* 搜索栏 */
+export const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 48px;
+  & i {
+    cursor: pointer;
+  }
+  .zoom {
+    position: absolute;
+    right: 4px;
+    bottom: 7px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    &.focused {
+      background: #777;
+      color: #fff;
+    }
   }
 `
 export const NavSearch = styled.input.attrs({
@@ -48,9 +95,10 @@ export const NavSearch = styled.input.attrs({
   box-sizing: border-box;
   width: 200px;
   height: 38px;
+  line-height: 38px;
   padding: 0 30px 0 20px;
-  margin-top: 9px;
-  margin-left: 20px;
+  margin-top: 4px;
+  margin-left: 26px;
   border: none;
   outline: none;
   border-radius: 19px;
@@ -63,52 +111,93 @@ export const NavSearch = styled.input.attrs({
   &.focused {
     width: 280px;
   }
-`
 
-export const SearchWrapper = styled.div`
-  position: relative;
-  float: left;
-
-  .slide-enter {
+  &.slide-enter {
+    width: 200px;
     transition: all 0.4s ease-in-out;
   }
-  .slide-enter-active {
+  &.slide-enter-active {
     width: 280px;
   }
-  .slide-exit {
+  &.slide-exit {
+    width: 280px;
     transition: all 0.4s ease-in-out;
   }
-  .slide-exit-active {
+  &.slide-exit-active {
     width: 200px;
-  }
-
-  .iconfont {
-    position: absolute;
-    right: 4px;
-    bottom: 5px;
-    width: 30px;
-    line-height: 30px;
-    border-radius: 15px;
-    text-align: center;
-    &.focused {
-      background: #777;
-      color: #fff;
-    }
   }
 `
 
+/* 搜索记录框 */
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: 56px;
+  width: 240px;
+  padding: 0 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #fff;
+  &.hidden {
+    display: none;
+  }
+`
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`
+export const SearchInfoSwitch = styled.span`
+  float: right;
+  cursor: pointer;
+  font-size: 13px;
+  .spin {
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 2px;
+    transition: all 0.2s ease-in;
+    transform: rotate(0deg);
+    transform-origin: center center;
+  }
+`
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`
+export const SearchInfoItem = styled.a`
+  float: left;
+  display: block;
+  padding: 0 5px;
+  line-height: 20px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  color: #787878;
+  border-radius: 3px;
+  border-color: #b4b4b4;
+
+  :hover {
+    box-shadow: 0 6px 6px #eee;
+    transition: all 0.4s;
+  }
+`
+
+/* 最右侧部分 */
 export const Addition = styled.div`
   position: absolute;
   right: 0;
   top: 0;
   height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `
-
 export const Button = styled.div`
-  float: right;
-  margin-top: 8px;
-  margin-right: 20px;
-  padding: 0 20px;
+  padding: 0 24px;
+  margin: 0 6px;
   line-height: 38px;
   border-radius: 19px;
   border: 1px solid #ec6149;
