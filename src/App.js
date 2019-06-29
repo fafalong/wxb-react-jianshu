@@ -8,6 +8,8 @@ import store from './store/index'
 import Header from './common/header/index'
 import Home from './pages/home/index'
 import Detail from './pages/detail/index'
+import Login from './pages/login/index'
+import Write from './pages/write/index'
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
         <Fragment>
           <Header />
           <Route exact path='/' component={Home} />
-          <Route exact path='/detail' component={Detail} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/write' component={Write} />
+          <Route exact path='/detail/:id' component={Detail} />
         </Fragment>
       </BrowserRouter>
     </Provider>

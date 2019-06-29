@@ -11,6 +11,9 @@ import {
   handleMouseLeaveAction,
   handleChangePageAction
 } from './store/actionCreators'
+
+import { logoutAction } from '../../pages/login/store/actionCreators'
+
 // 导入样式表
 import {
   HeaderWrapper,
@@ -44,7 +47,9 @@ const Header = props => {
     page,
     handleMouseEnter,
     handleMouseLeave,
-    handleChangePage
+    handleChangePage,
+    login,
+    logout
   } = props
 
   const newList = list.toJS() // 把list转为普通的数组，而不是immutable
@@ -108,14 +113,24 @@ const Header = props => {
             <NavItemRight className='right'>
               <i className='iconfont'>&#xe636;</i>
             </NavItemRight>
-            <NavItemRight className='right'>登陆</NavItemRight>
+            {login ? (
+              <NavItemRight onClick={logout} className='right'>
+                退出
+              </NavItemRight>
+            ) : (
+              <Link to='/login'>
+                <NavItemRight className='right'>登陆</NavItemRight>
+              </Link>
+            )}
           </NavRight>
         </Nav>
         <Addition>
           <Button className='reg'>注册</Button>
-          <Button className='writting'>
-            <i className='iconfont'>&#xe615;</i>写文章
-          </Button>
+          <Link to='/write'>
+            <Button className='writting'>
+              <i className='iconfont'>&#xe615;</i>写文章
+            </Button>
+          </Link>
         </Addition>
       </HeaderContent>
     </HeaderWrapper>
@@ -126,11 +141,12 @@ const Header = props => {
 const mapStateToProps = state => {
   return {
     // immutable对象的get方法，此时的state是一个immutable对象
-    focused: state.get('header').get('focused'),
-    list: state.get('header').get('list'),
-    page: state.get('header').get('page'),
-    mouseIn: state.get('header').get('mouseIn'),
-    totalPage: state.get('header').get('totalPage')
+    focused: state.getIn(['header', 'focused']),
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page']),
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    login: state.getIn(['login', 'login'])
   }
 }
 
@@ -163,6 +179,10 @@ const mapDispatchToProps = dispatch => {
       } else {
         dispatch(handleChangePageAction(1))
       }
+    },
+
+    logout() {
+      dispatch(logoutAction())
     }
   }
 }

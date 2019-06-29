@@ -6,10 +6,14 @@ import { combineReducers } from 'redux-immutable' // 将stroe中最外层的redu
 
 import headerReducer from '../common/header/store/reducer'
 import homeReducer from '../pages/home/store/reducer'
+import detailReducer from '../pages/detail/store/reducer'
+import loginlReducer from '../pages/login/store/reducer'
 
 const reducer = combineReducers({
   header: headerReducer,
-  home: homeReducer
+  home: homeReducer,
+  detail: detailReducer,
+  login: loginlReducer
 })
 
 export default reducer

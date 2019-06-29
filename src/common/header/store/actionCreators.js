@@ -64,7 +64,7 @@ export const getList = () => {
         dispatch(getListAction(data))
       })
       .catch(error => {
-        console.log(error)
+        throw Error(error)
       })
   }
 }

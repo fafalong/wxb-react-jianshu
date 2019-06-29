@@ -49,6 +49,9 @@ export const getMoreList = articlePage => {
         const data = res.data.data
         dispatch(addHomeListAction(data, articlePage + 1))
       })
+      .catch(error => {
+        throw Error(error)
+      })
   }
 }
 

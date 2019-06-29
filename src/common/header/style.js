@@ -64,6 +64,7 @@ export const NavItemRight = styled.div`
   color: #aaa;
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 `
 
 /* 搜索栏 */
@@ -130,6 +131,7 @@ export const NavSearch = styled.input.attrs({
 
 /* 搜索记录框 */
 export const SearchInfo = styled.div`
+  z-index: 10;
   position: absolute;
   left: 0;
   top: 56px;
@@ -202,6 +204,7 @@ export const Button = styled.div`
   border-radius: 19px;
   border: 1px solid #ec6149;
   font-size: 14px;
+  cursor: pointer;
   &.reg {
     color: #ec6149;
   }
