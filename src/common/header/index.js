@@ -142,7 +142,7 @@ const Header = props => {
   )
 }
 
-// 把store的数据state映射到组件中的props，负责取值
+// 把store的数据state映射到组件中的props，负责取数据，通过this.props.xxx
 const mapStateToProps = state => {
   return {
     // immutable对象的getIn方法，此时的state是一个immutable对象
@@ -155,7 +155,7 @@ const mapStateToProps = state => {
   }
 }
 
-// 把dispatch方法映射到props上，负责更改值
+// 把dispatch方法映射到props上，负责反向更改/传递数据，通过dispatch派发action
 const mapDispatchToProps = dispatch => {
   return {
     handleInputFocus(list) {

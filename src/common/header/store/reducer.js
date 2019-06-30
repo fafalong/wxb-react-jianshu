@@ -11,6 +11,7 @@ import {
   MOUSE_LEAVE,
   CHANGE_PAGE
 } from './actionTypes'
+
 // 导入Immutable.js库，fromJS把state变成immutable对象
 import { fromJS } from 'immutable'
 
