@@ -136,7 +136,7 @@ export const WriterWrapper = styled.div`
   text-align: center;
 `
 
-export const BackTop = styled.div`
+export const BackToTop = styled.div`
   position: fixed;
   right: 100px;
   bottom: 100px;

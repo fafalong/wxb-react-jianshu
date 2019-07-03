@@ -3,11 +3,7 @@
 import axios from 'axios'
 import { fromJS } from 'immutable'
 // 导入action-type管理器
-import {
-  CHANGE_HOME_DATA,
-  ADD_ARTICLE_LIST,
-  TOGGLE_TOP_SHOW
-} from './actionTypes'
+import { CHANGE_HOME_DATA, ADD_ARTICLE_LIST } from './actionTypes'
 
 // redux-thunk发送ajax请求
 const changeHomeDataAction = data => {
@@ -52,12 +48,5 @@ export const getMoreList = articlePage => {
       .catch(error => {
         throw Error(error)
       })
-  }
-}
-
-export const toggleTopShow = show => {
-  return {
-    type: TOGGLE_TOP_SHOW,
-    show: show
   }
 }

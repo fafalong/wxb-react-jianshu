@@ -1,18 +1,13 @@
 /* reducer —— home分处理器 */
 
 import { fromJS } from 'immutable'
-import {
-  CHANGE_HOME_DATA,
-  ADD_ARTICLE_LIST,
-  TOGGLE_TOP_SHOW
-} from './actionTypes'
+import { CHANGE_HOME_DATA, ADD_ARTICLE_LIST } from './actionTypes'
 
 const defaultState = fromJS({
   topicList: [],
   articleList: [],
   recommendList: [],
-  articlePage: 1, // 当前页码
-  showScroll: false
+  articlePage: 1 // 当前页码
 })
 
 const changeHomeData = (state, action) => {
@@ -36,10 +31,6 @@ export default (state = defaultState, action) => {
       return changeHomeData(state, action)
     case ADD_ARTICLE_LIST:
       return addArticleList(state, action)
-    case TOGGLE_TOP_SHOW:
-      return state.merge({
-        showScroll: action.show
-      })
     default:
       return state
   }

@@ -1,31 +1,31 @@
-import React, { PureComponent } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getDetail } from './store/actionCreators'
 import { DetailWrapper, Header, Content } from './style'
 
-class Detail extends PureComponent {
-  render() {
-    return (
-      <DetailWrapper>
-        <Header>{this.props.title}</Header>
-        <Content dangerouslySetInnerHTML={{ __html: this.props.content }} />
-      </DetailWrapper>
-    )
-  }
+// React Hooks
+function Detail(props) {
+  // ajax请求
+  useEffect(() => {
+    props.handleGetDetail(props.match.params.id)
+  }, [props])
 
-  componentDidMount() {
-    this.props.handleGetDetail(this.props.match.params.id)
-  }
+  return (
+    <DetailWrapper>
+      <Header>{props.title}</Header>
+      <Content dangerouslySetInnerHTML={{ __html: props.content }} />
+    </DetailWrapper>
+  )
 }
 
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     title: state.getIn(['detail', 'title']),
     content: state.getIn(['detail', 'content'])
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     handleGetDetail(id) {
       dispatch(getDetail(id))
@@ -34,6 +34,6 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(
-  mapState,
-  mapDispatch
+  mapStateToProps,
+  mapDispatchToProps
 )(Detail)

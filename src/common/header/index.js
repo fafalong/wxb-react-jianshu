@@ -36,8 +36,8 @@ import {
   Button
 } from './style'
 
-// 改写成无状态组件
-const Header = props => {
+// React Hooks
+function Header(props) {
   const {
     focused,
     mouseIn,

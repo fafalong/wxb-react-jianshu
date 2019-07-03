@@ -1,60 +1,53 @@
-import React, { PureComponent } from 'react'
+import React, { useRef, useCallback } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from './store/actionCreators'
 import { LoginWrapper, LoginBox, Input, Button } from './style'
 
-class Login extends PureComponent {
-  render() {
-    const { loginStatus } = this.props
-    if (!loginStatus) {
-      return (
-        <LoginWrapper>
-          <LoginBox>
-            <Input
-              placeholder='账号'
-              ref={input => {
-                this.account = input
-              }}
-            />
-            <Input
-              placeholder='密码'
-              type='password'
-              ref={input => {
-                this.password = input
-              }}
-            />
-            <Button
-              onClick={() =>
-                this.props.handleLogin(this.account, this.password)
-              }
-            >
-              登陆
-            </Button>
-          </LoginBox>
-        </LoginWrapper>
-      )
-    } else {
-      return <Redirect to='/' />
-    }
+// React Hooks
+function Login(props) {
+  const inputAccountEl = useRef(null)
+  const inputPasswordEl = useRef(null)
+
+  // useCallback提升性能
+  const onLogin = useCallback(() => {
+    props.handleLogin(
+      inputAccountEl.current.value,
+      inputPasswordEl.current.value
+    )
+  }, [props])
+
+  const { loginStatus } = props
+  if (!loginStatus) {
+    return (
+      <LoginWrapper>
+        <LoginBox>
+          <Input placeholder='账号' ref={inputAccountEl} />
+          <Input placeholder='密码' type='password' ref={inputPasswordEl} />
+          <Button onClick={onLogin}>登陆</Button>
+        </LoginBox>
+      </LoginWrapper>
+    )
+  } else {
+    return <Redirect to='/' />
   }
 }
 
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     loginStatus: state.getIn(['login', 'login'])
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    handleLogin(accountElem, passwordElem) {
-      dispatch(login(accountElem.value, passwordElem.value))
+    handleLogin(account, password) {
+      dispatch(login(account, password))
     }
   }
 }
 
 export default connect(
-  mapState,
-  mapDispatch
+  mapStateToProps,
+  mapDispatchToProps
 )(Login)
